@@ -79,8 +79,11 @@ app.use((err, req, res, next) => {
   }
   next();
 });
-connectDB().then(() => {
-  app.listen(process.env.PORT, () => {
-    console.log("Server is running", process.env.PORT);
-  });
+app.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
+});
+
+connectDB().catch((err) => {
+  console.error("MongoDB connection failed:", err.message);
+});
 });
